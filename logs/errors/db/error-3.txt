@@ -1,0 +1,1 @@
+{"code":"ER_BAD_DB_ERROR","errno":1049,"sqlMessage":"Unknown database 'purba_con_node'","sqlState":"42000","fatal":true}
