@@ -43,6 +43,8 @@ const getAllProducts = async (limit) => {
   
 }
  */
+
+/*  */
 async function getAllProducts() {
     try {
         const connection = await pool.promise().getConnection(); // Obtener conexión del pool
