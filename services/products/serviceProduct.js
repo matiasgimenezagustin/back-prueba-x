@@ -23,7 +23,7 @@ const createProduct = async ({nombre, precio, stock, descripcion}) =>{
     }
     
 }
-
+/* 
 const getAllProducts = async (limit) => {
     try{
         const query = 'SELECT * FROM productos'
@@ -41,6 +41,22 @@ const getAllProducts = async (limit) => {
         console.error(error)
     }
   
+}
+ */
+async function getAllProducts() {
+    try {
+        const connection = await pool.promise().getConnection(); // Obtener conexión del pool
+
+        const [rows, fields] = await connection.query('SELECT * FROM productos');
+
+        // Realizar acciones con los resultados
+
+        connection.release(); // Liberar la conexión al pool
+        return rows; // O cualquier cosa que quieras devolver
+    } catch (error) {
+        console.error('Error al obtener productos:', error);
+        throw error; // Puedes manejar el error según tus necesidades
+    }
 }
 
 const getProductById = async (pid) => {
