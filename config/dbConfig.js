@@ -25,37 +25,26 @@ pool.on('error', (error) => {
     console.error('Error en el pool de MySQL:', error);
 });
 
+pool.getConnection((err, connection) => {
+    if (err) {
+        console.error('Error al conectar a la base de datos:', err);
+    } else {
+        console.log('Conexión establecida con éxito a la base de datos');
 
-// Conexión al pool
-/* const getConnectionAsync = util.promisify(pool.getConnection).bind(pool); */
-
-// Ejemplo de consulta con el pool de conexiones
-/* (async () => {
-    try {
-        const connection = await getConnectionAsync();
-        console.log('Conexión al pool obtenida con éxito.');
-
-        // Realizar consultas o cualquier operación con la conexión
-
-        // Devolver la conexión al pool cuando hayas terminado
-        connection.release();
-        console.log('Conexión al pool liberada.');
-    } catch (error) {
-        console.error('Error al obtener la conexión del pool:', error);
-    }
-})();
-
-// Función para realizar consultas con el pool
-const dbQueryAsync = (sql, values) => {
-    return new Promise((resolve, reject) => {
-        pool.query(sql, values, (error, results) => {
-            if (error) {
-                reject(error);
+        // Puedes realizar una consulta de prueba aquí, por ejemplo:
+        connection.query('SELECT 1 + 1 AS result', (queryErr, results) => {
+            if (queryErr) {
+                console.error('Error al realizar la consulta:', queryErr);
             } else {
-                resolve(results);
+                console.log('Resultado de la consulta:', results);
             }
+
+            // Liberar la conexión después de realizar la consulta
+            connection.release();
         });
-    });
-}; */
+    }
+});
+
+
 
 module.exports = {pool};
