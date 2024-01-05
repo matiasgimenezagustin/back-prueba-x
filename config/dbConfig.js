@@ -16,7 +16,7 @@ const db = mysql.createConnection({
     database: process.env.DB_NAME,
     port: process.env.DB_PORT
 })
-let counter = Number(fs.readFileSync('./static/dbErrorsCounter.txt', 'utf-8'))
+/* let counter = Number(fs.readFileSync('./static/dbErrorsCounter.txt', 'utf-8')) */
 
 db.connect((error) =>{
     if(error){
