@@ -1,7 +1,7 @@
-const mysql = require('mysql');
-const fs = require('fs');
+const mysql = require('mysql2');
+/* const fs = require('fs');
 const util = require('util');
-
+ */
 console.log({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -11,8 +11,8 @@ console.log({
 });
 
 // Configuración del pool de conexiones
-const pool = mysql.createPool({
-    connectionLimit: 10, // Puedes ajustar este límite según tus necesidades
+const pool =   mysql.createPool({
+
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -25,11 +25,12 @@ pool.on('error', (error) => {
     console.error('Error en el pool de MySQL:', error);
 });
 
+
 // Conexión al pool
-const getConnectionAsync = util.promisify(pool.getConnection).bind(pool);
+/* const getConnectionAsync = util.promisify(pool.getConnection).bind(pool); */
 
 // Ejemplo de consulta con el pool de conexiones
-(async () => {
+/* (async () => {
     try {
         const connection = await getConnectionAsync();
         console.log('Conexión al pool obtenida con éxito.');
@@ -55,6 +56,6 @@ const dbQueryAsync = (sql, values) => {
             }
         });
     });
-};
+}; */
 
-module.exports = dbQueryAsync;
+module.exports = {pool};
