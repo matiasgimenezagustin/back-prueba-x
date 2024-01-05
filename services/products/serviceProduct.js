@@ -2,7 +2,7 @@ const {pool} = require('../../config/dbConfig')
 const mailerService = require('../mailerService/mailerService')
 const { productCreatedTemplate } = require('../mailerService/templates/productMailTemplates')
 
-
+console.log('hola', pool)
 const createProduct = async ({nombre, precio, stock, descripcion}) =>{
     try{
         const query = 'INSERT INTO productos (nombre, precio, stock, descripcion) VALUES (?,?,?,?)'
