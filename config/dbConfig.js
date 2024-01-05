@@ -20,9 +20,10 @@ let counter = Number(fs.readFileSync('./static/dbErrorsCounter.txt', 'utf-8'))
 
 db.connect((error) =>{
     if(error){
-        fs.promises.writeFile('./logs/errors/db/error-' + counter++ + '.txt', JSON.stringify(error), 'utf-8')
-        fs.promises.writeFile('./static/dbErrorsCounter.txt', String(counter), 'utf-8')
+        /* fs.promises.writeFile('./logs/errors/db/error-' + counter++ + '.txt', JSON.stringify(error), 'utf-8')
+        fs.promises.writeFile('./static/dbErrorsCounter.txt', String(counter), 'utf-8') */
         console.error('Error al conectar a MySql')
+        console.error(error)
        
     }
     else{
